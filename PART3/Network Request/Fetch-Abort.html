@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch - Abort</title>
+</head>
+<body>
+    <h3>Fetch - Abort</h3>
+    <script>
+        // The Abort controller is for cancelling an ongoing fetch
+        /* There’s a special built-in object for such purposes: AbortController. 
+        It can be used to abort not only fetch, but other asynchronous tasks as well.*/
+
+        /* structure of a controller 
+
+            function Controller(){
+
+                this.signal : {
+                    aborted : false
+                            }
+
+                this.abort(){
+                    //
+                            }
+            } 
+
+           let controller = new Controller();
+
+           controller.abort();  // to abort a fetch
+
+           then signal.aborted = true ;  */
+
+
+
+            // other topics - Using with fetch , we need pass signal : controller.signal in the options of fetch , fetch knows very well to work with Abort controller
+            // Abort Controller is scalable - we can use one abort controller to cancel all fetch at one time .    
+    </script>
+</body>
+</html>

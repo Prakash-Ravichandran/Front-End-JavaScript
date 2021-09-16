@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Prototypes</title>
+</head>
+<body>
+    <h2>Native Prototypes</h2>
+    <script>
+
+    // Snippet No : 1 ,  when the obj={...} is created , the [[prototype]] of obj is setted as obj._proto (it has its default methods like toString )
+    // so if we keep the same name of one of the default constructors , the javascript takes from the first level itself      
+    let obj = {
+      toString : function (name) {
+      alert(name); }
+    };
+
+   obj.toString("Hello World !");
+    </script>
+</body>
+</html>

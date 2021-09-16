@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <h1>Promise Snippets</h1>
+    <script>
+
+/*   Promise Chaining  */
+// 1. multi-level  ->  .then(resolve(2 * randomValue)).then(resolve(2 * randomValue)).then.catch(resolve(2 * randomValue))
+// 2. multiple     ->  promise.then   promise.then      promise.then
+
+
+    function random(){
+    let  n = Math.floor(Math.random() * 7);
+    console.info(n);
+    return n;
+    }
+      
+      
+    function Game(){
+    return new Promise( (resolve,reject) => { 
+    let dice = random();
+    console.info(dice);
+     if(dice == 6){
+         resolve("dice released game started");
+     }
+    else {
+        reject("dice not released restart the game");
+        
+    }             
+    });
+    }
+    
+    Game()
+    .then(function(message) {
+            console.log(message);
+            // return Game();
+        }, function(message){
+        console.log(message);
+        Game();
+     // return Game();
+    })
+    .then(function(message) {
+        console.log(message) },   
+        function(message){
+        console.log(message);
+        Game();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+
+<script>
+  // implementing using callback  
+  // usage of callbacks - making javascript asynchrounous , needs to do something after a task happens or button clicks....
+  // syntax is paasing a function to another functions because functional are said as objects.
+  var b = Math.floor(Math.random() + .5);
+console.log(b);
+function xyz( callback1 , callback2){
+
+// like promise statement 
+  let a = 1 + b;
+  if (a==2){
+      callback1("we are success");
+  }
+  else {
+      callback2("we are failed");
+  }
+}
+xyz( function callBackOne(message) { console.log(message) }   , function callBackTwo(messageTwo) { console.log(messageTwo)}  );
+
+
+// implementing using promise 
+
+function abc() {
+  return new Promise( function(resolve,reject)  {
+       let a = 1 + b;
+
+       if(a==2){
+         resolve('we are success');
+       }
+       else {
+         reject('we are failed');
+       }
+  })
+}
+
+abc().then(function(message){console.log(message)}).catch(function (message){ console.log(message)});
+
+
+
+</script>

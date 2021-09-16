@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProtoTypal Inheritance</title>
+</head>
+<body>
+    <script>
+    // snippets - No : 1
+
+    var animal = {
+    dog : true }
+
+    var rabbits = {
+    jumps : true }
+
+    rabbits._proto_ = animal;
+
+    // snippet No : 2
+
+    let user = {
+    name : "primaryUser",
+    loginId : 13,
+    system : "mac",
+    softWares: 15,
+    acounts : ['google','yahoo','zomato','uber',],
+    accessories : ['mouse','headphones','speakers','camera']
+    }
+
+    let admin = {
+    name : "secondayUser",
+    loginId : 14
+    }
+    //assigning prototype
+    admin.__proto__ = user; 
+    admin.system  // mac  
+
+// Then, when admin.system tries to read, it’s not in admin, so JavaScript follows the [[Prototype]] reference and finds it in user (look from the bottom up):
+
+// snippet No : 3 
+  
+//The prototype chaining
+
+      let adminDuplicate = {}; 
+      adminDuplicate.__proto__ = admin; // will have admins prop & users prop
+
+// snippets No : 4 
+// New Modern Js syntax for prototypal inheritance : Object.getPrototypeOf/Object.setPrototypeOf     
+    let userTwo = {
+    name : "primaryUser",
+    loginId : 13,
+    system : "mac",
+    softWares: 15,
+    acounts : ['google','yahoo','zomato','uber',],
+    accessories : ['mouse','headphones','speakers','camera']
+    }
+
+    let adminTwo = {
+    name : "secondayUser",
+    loginId : 14
+    }
+
+    //assigning prototype
+    adminTwo.getPrototypeOf = user;  
+    adminTwo.system;   
+
+    // Snippet No : 5  Writing doesn’t use prototype or in other words , we can have the same properties/methods names with different values/functionality.
+
+    /* The prototype is only used for reading properties.
+      Write/delete operations work directly with the object. */ 
+
+      let userThree = {
+          company : "Google",
+          location : "america",
+          name : 'userThree',
+          id : 1 ,
+         entryTime(){
+            return console.info(`Entry time for id ${this.id} of ${this.name} is ${new Date()}`);
+         }
+      };
+
+      let userFour = {
+          name : 'userFour',
+          id : 2,
+          __proto__:userThree 
+      }
+      userFour.entryTime = function() {
+              return console.info(`Entry time for id ${this.id} of ${this.name} is ${new Date()}`);
+          }
+
+      userThree.entryTime();
+      userFour.entryTime();
+
+    // key Note : From now on,  userFour.entryTime(); call finds the method immediately in the object and executes it, without using the prototype:  
+   
+   // snippet No : 6 
+   // Accessor properties are an exception, as assignment is handled by a setter function. So writing to such a property is actually the same as calling a function.
+
+
+   
+   
+   
+   </script>
+</body>
+</html>

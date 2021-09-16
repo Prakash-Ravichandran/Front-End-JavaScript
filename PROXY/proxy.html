@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+<body>
+
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <script>
+// ---- <proxyVariable>.<properties> are the trigerres or in otherwords callers of proxies-----------
+
+// proxy for define property : example 1
+    // const mytarget = {}; 
+    const handler1 = {
+        defineProperty: function( mytarget , property , receiver) {
+                                if(property == "user"){
+                                     return console.log("yes accepted");
+                                }
+                                return console.log("you can't add a property");
+                                // console.log("defineProperty");
+                                // return Object.defineProperty(mytarget, property, receiver);
+                          }
+      };
+
+      let firstProxy = new Proxy( {} , handler1);
+      firstProxy.user= "ashok"; 
+      
+
+// proxy for defineProperty : example 2
+// assigning target object while call to function
+    const handler2 ={
+        defineProperty: function (objectHolder , objectHolderProperty , receiver){
+                     if(objectHolderProperty == "b") {
+                         console.log("property accepted");
+                     }
+                     else {
+                          console.log(`property ${receiver} is not accepted`);
+                     }
+                }
+       };
+        let secondProxy = new Proxy({} , handler2);
+        console.log("second example of define property");
+        secondProxy.b=2;
+        secondProxy.a=2;
+       
+// proxy for defineProperty : example 3 
+// assignning target object while call to a function 
+
+function myDef(){
+    const newyork ={
+       defineProperty: function(helloObject,helloObjectProperty) {
+                        if(helloObjectProperty == "studentPassedMark"){
+                            console.log("the student is passed with x% in total");
+                        }
+
+                        else {
+                        console.log("sorry we have a protocol of not display failed marks");
+                        }
+                    }
+  };
+  let thirdProxy = new Proxy({} , newyork); 
+  console.log("defineProperty example 3");
+  thirdProxy.studentPassedMark=="five";
+}
+myDef();
+
+    // fourth Proxy with get
+    const targetFour = {};
+    const handlerFour = {
+        set : function (targetFour,fourthProperty,fourthReceiver){
+                if(fourthProperty == "age"){
+                    let age = 42;
+                    console.log(age);
+                }
+                else {
+                    console.log("no property");
+                }
+    }
+};
+    var fourthProxy = new Proxy(targetFour,handlerFour);
+    console.log("fouth proxy example with set")
+    fourthProxy.age=54;
+
+    // fivth proxy with get
+    const targetFive= { posting:"Banking Clerk" , secretPosting:"CBI"};
+    const handlerFive = {
+        get : function (targetFive , PropertyFive){
+              if(PropertyFive == "secretPosting"){
+                  let secretPosting = "no secretPosting";
+                   return console.error(secretPosting);
+              }
+              else {
+                      return console.log(targetFive.posting);
+                //    return console.log(fivthProxy.name); giving call stack size exceeded
+              }
+      }
+  }
+    var fivthProxy = new Proxy (targetFive , handlerFive);
+    console.log("Fivth Proxy example with get");
+    fivthProxy.posting;
+    fivthProxy.secretPosting;
+
+    // proxy for getOwnPropertyDescriptor
+     const targetSix={
+         name : "kumar",
+         id : 205,
+         role : "senior software Engineer",
+         expierenceInYears : 10,
+         email : "kumar23@gmail.com"
+     };
+
+    const handlerSix = {
+    getOwnPropertyDescriptor : (targetSix , propertySix) => {
+    if(propertySix == "password"){
+        return console.log("password cannot be shared");
+    }
+
+    else {
+        return console.log(Object.getOwnPropertyDescriptors(targetSix));
+    }         
+    }
+    };
+    let proxySix = new Proxy(targetSix,handlerSix);
+    console.log("proxy for getOwnPropertyDescriptor");
+    proxySix.password="hello";  // we need to put equalto beacuse they are triggered by as same as set... trap
+    // proxySix.email;
+
+// methods like apply , call 
+
+const employee = {
+  fullName : function(receiveObj,message) {
+          return  `${receiveObj} ${this.firstName}  ${this.secondName} ${message}` ;
+     }
+};
+   
+
+const employeeDetails = {
+     firstName : "Navik",
+     secondName : "kumar"
+}
+
+
+ document.getElementById("demo").innerHTML = employee.fullName.apply(employeeDetails , ['Hello' , 'Welcome']);
+
+
+// apply trap
+
+// const loc = {
+//     place : "Chennai",
+//     time : new Date()
+// };
+
+// const targetApply = {
+//   locationTime : (message1 , message2) => {
+//              console.log('enquiring the location');
+//            return console.log(`Location is ${this.place} , time is ${this.time} , ${message1} ${message2} `);
+//   }  
+// };
+
+// const handlerApply = {
+//     apply : (target, applyproperty , argumentList ) => {
+
+//               if (applyproperty == "locationTime"){
+//                   console.log("apply trap");
+//               }
+//              else {
+//                 console.log("No apply trap");
+//              }
+//             //  locationTime.apply(loc);
+//     }
+// };
+
+// let applyProxy = new Proxy(targetApply , handlerApply);
+
+// applyProxy.locationTime.apply(loc, ["hello" , "world"]);
+
+
+// apply trap again 
+
+
+function Concate(cat1 , cat2){
+    return  `${cat1} ${cat2}`;
+}
+
+handlerCon = {
+    apply : function (target , prop , argumentList) {
+             console.log("called using apply trap");
+             return target(argumentList[0],argumentList[1]); 
+    }
+}
+
+ let proxyVar = new Proxy(Concate,handlerCon);
+
+ console.log(proxyVar("hello", "world"));
+
+
+
+    
+//   const prakash = Object.getOwnPropertyDescriptors(targetSix);
+//   console.log(prakash);
+  
+//   studentPassedMark : "mark" , studentFailedMark : "Status - Reappear"
+            // let lastChapter = {
+      //   getProp : "i am a prop" ,
+      //   // hello : "hello"
+      //   myfunc : function() {
+                           
+      //               return this.firstName + "" + this.lastName; 
+      //                }
+      // };
+
+      // let proxy = new Proxy(lastChapter , {
+      //   apply : (obj , prop) => {  
+
+      //             if ( prop == "getProp") {
+      //                 return console.log("you got the method");
+      //             }
+      //             else {
+      //                 return console.log("there is no method like this");
+      //             }      
+      //   } ,
+
+      //    get : (obj , prop) => {
+      //                if ( prop == "hello")   {
+      //                    return console.info(" i am a prop");
+      //                }
+
+      //                else {
+      //                  return console.info(" i am not a prop");
+      //                }
+      //    }
+      // });
+
+      // // proxy.lastChapter.apply(getProp);
+      // // console.log('at 29th line');
+
+      // const obj2 = {
+      //   firstName : "prakash",
+      //   lastName : "R"
+      // }
+
+      // // proxy.lastChapter.hello;
+
+      // console.log(lastChapter.myfunc.apply(obj2));
+      // console.log(Reflect.apply);
+
+    </script>
+</body>
+</html>

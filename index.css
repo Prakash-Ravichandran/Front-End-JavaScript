@@ -1,0 +1,55 @@
+
+.button-container{
+    margin-top: 25px;
+}
+a{
+    text-decoration: none;
+    padding: 20px;
+    margin: 50px;
+}
+
+.circle {  
+    border-radius: 50%;
+}
+
+.prev{
+    background: gray;
+    color: black;
+    opacity: 0.7;
+}
+
+.next {
+    background: green;
+    color: black;
+    opacity: 0.7;
+}
+
+.section-one  {
+    border: 5px solid lightblue;
+    width: 50%;
+    padding: 25px;
+}
+
+.section-two {
+    border: 5px solid lightgreen;
+    width: 50%;
+    padding: 25px;
+}
+
+.section-three {
+    border: 5px solid lightgrey;
+    width: 50%;
+    padding: 25px;
+}
+
+.section-four {
+    border: 5px solid lightyellow;
+    width: 50%;
+    padding: 25px;
+}
+
+.section-five {
+    border: 5px solid lightcoral;
+    width: 50%;
+    padding: 25px;
+}

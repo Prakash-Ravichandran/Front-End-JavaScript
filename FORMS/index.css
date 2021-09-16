@@ -1,0 +1,38 @@
+/* input[type="text"]{
+    display:block;
+    margin-block: 1em;
+}
+input[type="email"]{
+    display:block;
+    margin-block: 1em;
+}
+input[type="tel"]{
+    display:block;
+    margin-block: 1em;
+}
+input[type="password"]{
+    display:block;
+    margin-block: 1em;
+}
+
+input[type="submit"]{
+    display: block;
+    margin-block: 1em;
+} */
+
+* input {
+    display: block;
+    margin-block: 1em;
+}
+
+ input[type="checkbox"]{
+     display: inline !important;
+     margin-block: 1em;
+ }
+
+.danger{
+    color: red;
+    font-size:small;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+}

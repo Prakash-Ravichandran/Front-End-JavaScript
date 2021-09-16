@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Request</title>
+</head>
+<body>
+    <h3>XML Request</h3>
+    <script>
+        /* Getting a response involves two-stages
+        Getting a response is usually a two-stage process.
+
+        1. First, the promise, returned by fetch,
+         Resolves with an object of the built-in Response class as soon as the server responds with headers.
+         
+        2. Second, to get the response body, we need to use an additional method call. 
+            response.text() – read the response and return as text,
+            response.json() – parse the response as JSON,
+            response.formData() – return the response as FormData object (explained in the next chapter),
+            response.blob() – return the response as Blob (binary data with type),
+            response.arrayBuffer() – return the response as ArrayBuffer (low-level representation of binary data),
+          */
+
+        // response = {
+        //     status : 
+        //     json(){}
+        //     text(){}       
+        // }
+
+        let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+        let response = await fetch(url);  // let response = fetch(url , [options]) ;  //  [options :  { method : 'Post' , body : new FormData(formid)   }]
+
+        if (response.status == 200) { // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        alert("hello");
+        let json = await response.json();   // !important , we can choose only one body reading method
+        } else {
+        alert("HTTP-Error: " + response.status);
+        }
+
+        // response.headers are like built in Map objects .... we can iterate over them with a key value pairs...
+       // Request Headers :  If we need to set some headers , along with the URL in the fetch ,
+       /* 
+        let response = fetch(protectedUrl, {
+        headers: {
+        Authentication: 'secret'
+        }
+        }); */
+
+    </script>
+</body>
+</html>

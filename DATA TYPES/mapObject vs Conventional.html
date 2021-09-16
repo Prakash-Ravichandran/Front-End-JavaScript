@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map object vs Conventional Object</title>
+</head>
+<body>
+    <h3> question for Iterables of map objects</h3>
+    <script>
+          // snippet for benefit of destructuring in looping
+
+          let obj = {
+            name : 'askok' ,
+            age : 49,
+            company : 'google',
+            native : 'TamilNadu'
+        };
+                 // pointers of iterables           // iterables like arrays
+        console.log(`using conventional objects we cannot iterate , by using Object.entries(obj) returns an array we can do it`);         
+        for(let [iteratorKey,iteratorValue]  of Object.entries(obj)){           
+            console.log(`${iteratorKey} ${iteratorValue}`);
+        }
+
+        let mapObj = new Map();
+        mapObj.set('name','ashok');
+        mapObj.set('age',49);
+        mapObj.set('company','google');
+        mapObj.set('native','TamilNadu');
+        console.log(`using map objects we can iterate , as it direct return key , values`);   
+        for (let [iteratorKey , iteratorValue] of mapObj){    // one of the advantage of map objects
+            console.log(`${iteratorKey} ${iteratorValue}`);
+        }
+    </script>
+</body>
+</html>

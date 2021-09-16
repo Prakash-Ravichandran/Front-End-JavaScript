@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Assigning</title>
+</head>
+<body>
+
+    <h3>Objects Copying</h3>
+    <script>
+       // way 1 : Object.assign()
+       //way 2 :  Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj))
+       // way 3 : using Map() constructor
+
+        let userGlobal = {
+            name : 'Kumar',
+            age : 22,
+            native : 'chennai',
+            myFunc(){
+                return console.log('copying an object');
+            }
+        }
+        // way 1
+        let UserCopy  = Object.assign(userGlobal);
+        console.log(UserCopy);
+        // way 2
+        let clone = Object.create(Object.getPrototypeOf(userGlobal), Object.getOwnPropertyDescriptors(userGlobal));
+        console.log(clone);
+
+
+      
+        // way 3
+        let obj = new Map();
+        obj.set('name','ashok');
+        obj.set('age',22);
+        obj.set('native','chennai');
+
+        let newObj = {};
+        for(let [key,value] of obj){
+             newObj[key]= [value];
+        }
+
+        console.log(newObj);
+        newObj['age']=25;  // over writing copied object , not reflected in original object
+        console.log(obj);
+
+
+        // userGlobal = new Map();
+    //    for(let [key,value] in userGlobal){
+    //         UserCopy[key] = [value];
+    //         console.log(UserCopy);
+            
+    //    }
+      
+
+        // Object.assign 
+        // for .. in loop
+        // Object.create ()
+        //
+
+
+
+
+    </script>
+</body>
+</html>

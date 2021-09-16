@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference Type</title>
+</head>
+<body>
+    <h3>Reference Type</h3>
+    <script>
+        /* Reference type is a special “intermediary” internal type, with the purpose to pass information from dot . to calling parentheses (). 
+
+        /* Reading a property, such as with dot . in obj.method() returns not exactly the property value,
+         but a special “reference type” value that stores both the property value and the object it was taken from. */
+
+        /* Here we have a more complex call (expression)(). The call works as if it were split into two lines:
+
+         f = obj.go; // calculate the expression
+         f(); */
+
+         // dot . operator has special internal property of refering the object to the method call() ,
+         // has the right to assign this = object while calling a func(), 
+         // that's why it is breaking if we put them into a two line statement or calling after a expression dynamically.
+
+
+         let user = {
+             name : 'sriram',
+             hello(){
+                 return console.log(`${this.name}`);
+             }
+         };
+         let method;
+         user.hello();  // here the dot operator has the special intermediary 'internal type ' for assigning this = user ,
+
+         method = user.hello;  // here the dot operator loses its intermediary 'internal type' , so   . and () should be in same line;
+         method();
+
+    </script>
+</body>
+</html>

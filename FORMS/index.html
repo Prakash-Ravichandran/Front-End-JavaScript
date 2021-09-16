@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMS</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/Javascript" src="./index.js">
+    </script>
+</head>
+<body>
+
+    <!----Form Validation using only Javascript----->
+
+    <!-- action Attribute is used to specify where the formdata is to be sent to the server after submission of the form.-->
+
+    <!--The target attribute specifies where to display the response that is received after submitting the form.-->
+
+    <!--The method attribute specifies the HTTP method to be used when submitting the form data. default is get method------>
+
+    <!---The enctype attribute specifies how the form-data should be encoded when submitting it to the server & needed if the user needs to upload a file. used only if method is post- ----->
+
+    <!--The rel attribute specifies the relationship between the current document and the linked document. -->
+
+    <!--auto-focus whenever the page loads & reloads the focus will be on that element-->
+
+    <form name="landing-page-form" id="first-landing-page" action="./index.html" autocomplete="on" accept-charset="utf-8" enctype="multipart/form-data"  method="POST" target="_blank" rel="help">
+    <fieldset>
+        <legend><strong>Landing Page Form Validations</strong></legend>
+        <label for="firstname" name="firstname">First-Name:</label>
+        <input type="text" name="firstname" id="firstname" autocomplete="on" onblur="validateName()" value=""/>
+        <p id="err-one" class="danger"></p>
+
+        <label for="lastname" name="lastname">Last-Name:</label>
+        <input type="text" name="lastname" id="lastname" autocomplete="on"  onblur="validateNametwo()" value=""/>
+        <p id="err-two" class="danger"></p>
+
+        <label for="email" name="emaillabel">E-Mail:</label>
+        <input type="email" name="email" id="email" autocomplete="on" onblur="validateEmail()" required/>
+        <p id="err-three" class="danger"></p>
+
+        <label for="phone" name="phonelabel">Phone :</label>
+        <input type="tel" name="phone" id="phone" autocomplete="off" onblur="validatePhone()" />
+        <p id="err-four" class="danger"></p>
+
+        <label for="password" id="passwordLabel">Password:</label>
+        <input type="password" name="password" id="password" autocomplete="off" onblur="validatePassword()" />
+        <p id="err-five" class="danger"></p>
+      
+
+        <label for="confirmpassword" id="confirmpasswordLabel">Confirm-Password:</label>
+        <input type="password" name="confirmpassword" id="confirmpassword" autocomplete="off" onblur="validateConfirmPassword()" />
+        <p id="err-six" class="danger"></p>
+
+       
+        <input type="checkbox" name="checkbox" id="checkbox" />
+        <label for="checkbox">I agree with terms &#38; conditions</label>
+        <p id="err-seven" class="danger"></p>
+      
+
+        <input type="submit" name="submit" value="submit" onclick="validateForm()"/>
+        <input type="reset" name="reset" value="reset"   />
+    </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch - download progress</title>
+</head>
+<body>
+    <h1>Fetch Download progress</h1>
+    <script>
+        /* instead of response.json(); methods , to track download progress , 
+         we can use response.body */
+
+         /* response.body gives full control over the reading process, and we can count how much is consumed at any moment. */
+
+
+
+         // snippets - copied from comments 
+
+            async function  trackDownloadingOnXHR(url) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", url);
+
+            xhr.onprogress = event => {
+            console.log(`Received ${event.loaded} of ${event.total}`); 
+            };
+
+            xhr.onload = () => {
+            if(xhr.status != 200) {
+            console.log(`Error ${xhr.status}: ${xhr.statusText}`);
+            } else {
+            let response = JSON.parse(xhr.response);
+            console.log(response[0].author.login);
+            }
+            };
+
+            xhr.send();
+            }
+
+            trackDownloadingOnXHR('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits?per_page=100') 
+    </script>
+</body>
+</html>

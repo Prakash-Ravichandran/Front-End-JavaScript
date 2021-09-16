@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static , Privated , Protected properties</title>
+</head>
+<body>
+    <h3>Static , Privated , Protected properties </h3>
+    <script>
+
+        // for private fields
+        //On the language level, # is a special sign that the field is private. We can’t access it from outside or from inheriting classes.
+        /* 1. Internal interface – methods and properties, accessible from other methods of the class, but not from the outside.
+           2. External interface – methods and properties, accessible also from outside the class */
+
+
+           // snippet for public 
+            class PassengerFlight{
+            constructor(flightName , flightModel){
+                this.name = flightName;
+                this.model = flightModel;
+            }
+
+            arrival(){
+                return console.log(` This ${this.name} flight is going arrive at ${new Date()} `);
+            }
+
+            departure(){
+                return console.log(` This ${this.name} flight is departured  at ${new Date()} `);
+            }
+        }
+
+        let Boeing = new PassengerFlight("Boeing-787" , 2018);
+
+        Boeing.arrival();  // accessing outside the classes public property
+        Boeing.departure(); // accessing outside the classes public property
+
+        // snippet for private properties
+        /* key note : Private fields do not conflict with public ones. We can have both private  #CompanyCost and public #CompanyCost fields at the same time.*/
+
+        class SpiceJet{
+            #CompanyCost = 1_00_000;
+            #companyCurrentStock(){
+               return console.log(`The comapany's stock is 100 USD`);   
+            }
+            methodNew(){
+                return console.log(`The company cost is ${this.#CompanyCost} `);  // accessing private members inside a class itself
+            }
+        }
+        let jet = new SpiceJet();
+        jet.methodNew(); // it is public method
+        // jet.#companyCurrentStock(); // error - Private field '#CompanyCost' must be declared in an enclosing class
+
+        // on inheriting also it creates an error - Private field '#CompanyCost' must be declared in an enclosing class
+        class NewJet extends SpiceJet{
+           method(){
+            //    return console.log(this.#CompanyCost);  // error cannot access in inherited classes 
+           }
+        }
+
+        let myObj = new NewJet();
+        // myObj.method();
+
+
+        // snippet for protected 
+
+        class MyProtectedWifi{
+            _password = 'gth976#';
+        }
+
+        class MyPhone extends MyProtectedWifi{
+            Accessor(){
+                return console.log(`${this._password}`); // Accessing protected properties in inherited classes
+            }
+        }
+
+        let WifiObj = new MyPhone();
+        WifiObj.Accessor();     // inherited class object accessing protected variables
+
+        // snippet for static methods
+        // methods assigned as static are not a part of prototype
+        // Usually, static methods are used to implement functions that belong to the class, but not to any particular object of it.
+
+        // snippet for static properties
+
+        class Myclass{
+            static Name = "Rakesh Kumar";
+        }
+
+        let classObj = new Myclass();
+        console.log(Myclass.Name);       // accessed using className.property/method
+
+        // snippet for inheritance of static properties 
+
+        class ClassA{
+            static NativePlace = "Chennai";
+
+            constructor(name,currentLocation){
+                this.name = name;
+                this.currentLocation = currentLocation;
+            }
+
+            hello(){
+                return console.log(` hello ${this} `);
+            }
+            static Assign(){
+                return new ClassA("kumar","Mumbai");   
+            }
+        }
+
+        let ObjA = new ClassA;
+
+        class ClassB extends ClassA {
+            helloTwo(){
+                return console.log(`hello ${this}`);
+            }
+        }
+
+        let objB = new ClassB();
+        let objC = ClassB.Assign();
+        let objD = ClassA.NativePlace;  // static methods are accessible by inherited objects
+        console.log(objC);
+        console.log(objD);     // accesing static propety - NativePlace
+
+    </script>
+</body>
+</html>

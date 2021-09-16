@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor New - operator</title>
+</head>
+<body>
+    <script>
+    // advantage of using constructor
+    /* The regular {...} syntax allows to create one object.
+      But often we need to create many similar objects, like multiple users or menu items and so on. */
+
+    // difference between constructor function from a regular function
+    /* 1. They are named with capital letter first.
+      2. They should be executed only with "new" operator.  */
+
+    // regular function  
+    function regular(name ,age){        // execution area of regular function.
+        let myName = name ;
+        let myAge = age ;
+        console.info(`${myName} ${myAge}`);
+    }
+
+    regular("Kumar",23);     // calling area of regular function.
+
+    // constructor function
+    function Constructor(name , age){    // Note : The Name should start with capital letter
+      this.myName = name;
+      this.myAge = age;
+      console.info(`${this.myName} ${this.myAge}`);
+    }
+
+    let ConstObj = new Constructor("Wilson" , 23);   // calling area of constructor function. it is called only with 'new' operator.
+
+
+    // snippets fo implicit things
+
+    function MyConstructor(name,age){
+          // here the object is created as -> let myConstObj = {};
+          this.myName = name;
+          this.myAge = age;
+          console.info(`${this.myName} ${this.myAge}`);
+        // the place where the myConstructor returns the implicitly created objects 
+        // return this; -> return myConstObj;
+    }
+    let myConstObj = new MyConstructor("david",25);
+  // usage of constructor -> to easily created multiple objects easier than literals;
+    let myConstObj2 = new MyConstructor("Michael",34);
+    let myConstObj3 = new MyConstructor("vinoth",27);
+
+    /* Note : Let’s note once again – technically, any function (except arrow functions, as they don’t have this) can be used as a constructor. 
+    It can be run with new, and it will execute the algorithm above. 
+    The “capital letter first” is a common agreement, to make it clear that a function is to be run with new. */
+    
+    // snippet for immediately called constructor function for object creation & we couldnt call in the future as it is only for created a single complex object.
+
+    let citizen = new function(name ="wilson" , age=34 ){   // this function called imediattely and object properties getExecuted.
+                                               // a function preceeded with new is immedialtely callled
+        this.citizenName = name;
+        this.age = age;
+        this.nationality = "Indian";
+        this.isVoter = "Available";
+        this.isPassport = "Available";
+        this.isRights = "Eligibile"
+        this.isOwnCompany = "Eligible";
+    }
+
+    console.info(citizen);
+
+    // snippets for calling a constructor function with/without 'new' keyword.
+    // This approach is also used in libraries
+    function Immigrant(citizenName,countryName){
+      if(!new.target){
+             return new Immigrant(citizenName,countryName);  // this is for , if the object is not as a contructor notation than in a regular notation , then also it executes.
+           }
+         this.name = citizenName;
+         this.country = countryName;
+         console.info(`The Immigrant Name is ${this.name} , country is ${this.country}`);
+    }
+
+    let myCitizen = new Immigrant("samuel",'austria');
+    Immigrant("david","new zealand");
+
+    // Snippets below for Return from constructors
+    /* Key note : The main work of the constructor is to assign the properties of an object while calling them.
+                  actually they won't return anything */
+                  
+    // proxy for return constructor 
+    // snippet which does same as return constructor
+    let BigUserDuplicate = {
+      name : "John"
+    };
+
+    let handler={
+    get : (target,property,argumentList) => {
+    if(property == "name") {
+    alert( "GodZilla"); 
+    }}
+    }
+    let myProxy = new Proxy(BigUserDuplicate , handler);
+    myProxy.name;  
+
+    // The constructor function can also keep assign methods to the calling objects
+    function AssignMethod(name , company){
+           this.name = name;
+           this.companyName = company;
+         this.greeting = function(){
+           console.info(`Hello ${name} , wlecome ! to ${company}`);
+           return `Hello ${name} , wlecome! to ${company}`;
+         }
+    };
+
+    let employee = new AssignMethod("kiran","google");
+    employee.greeting();
+
+    </script>
+    </script>
+</body>
+</html>

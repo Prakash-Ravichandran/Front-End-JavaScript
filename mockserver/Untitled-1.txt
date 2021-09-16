@@ -1,0 +1,31 @@
+
+
+   algorithm for showing slides once for two seconds ....
+
+
+       1. To create a set Timeout function with time as two seconds.
+
+             var count = 0;
+
+            setTimeout( function() {} , 2000 , count);
+
+        2. That function should change the slides one by one after every two seconds  
+
+               i) for the first 2000 ms , the function should a value as 1 to showslide ,
+               ii) for the second 2000ms , the function should a value as 2 to Showslide ,
+               iii) for the third 2000ms , the function should a value as 3 to Showslide , 
+              iv) for the fourth 2000ms , the function should a value as 4 to Showslide , 
+              iv) for the fiveth 2000ms , the function should a value as 5 to Showslide , 
+
+
+            function (+1){
+                    showslide(+1) ;
+            }
+ 
+
+
+          setTimeout ( function (count+1) {
+                      
+                      showslide(count+1)
+                
+          }, 2000 , count +1 )

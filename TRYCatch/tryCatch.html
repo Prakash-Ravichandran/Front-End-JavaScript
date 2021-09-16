@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling</title>
+</head>
+<body>
+    <script>
+        //sometimes our scripts have errors. 
+
+        // why we need try & catch  ?
+        // 1. our mistakes 2.An unexpected user input. 3.An erroneous server response. 4.For a thousand other reasons.
+
+        /* script execution stops if a single error is occured in a program .
+        
+        so using try...catch , whenever we feel a block of code will have the possibility of creating a error, there we can use try...catch 
+        
+        Note : 
+        1. if any error : The execution of try block code stops where if any error has occured & then switches to catch block .
+        2. If no error  : Catch block execution stopped.
+        
+        
+        caution 1 : The JavaScript engine first reads the code, and then runs it:
+                    errors occuring during reading are called as parste-time errors ,
+                    if there is any parse time errors , they are unrecoverable - means catch block wont execute.That’s because the engine can’t understand the code.
+
+                    ex-code: 
+
+                    try {
+                           {{{{{{{{{{{{
+                        } catch (err) {
+                        alert("The engine can't understand this code, it's invalid");
+                        }  
+        Note : So, try...catch can only handle errors that occur in valid code. Such errors are called “runtime errors” or, sometimes, “exceptions”.
+        
+         */
+
+  // caution 2: try...catch works only in synchronous not for aynchronous code 
+ // why ????? 
+ // setTimeout is executed after the javascript engine went out of reading the code.
+
+                try {
+                console.log("before execution"); // only this line will execute
+                setTimeout(function() {
+                "Hello world";
+                }, 1000);
+                } catch (err) {
+                alert( "won't work" );
+                }
+ // solution try... catch can be placed inside the setTimeout Block 
+
+                setTimeout(function() {
+                try {
+                    noSuchVariable; // try...catch handles the error!
+                } catch {
+                    alert( "error is caught here!" );
+                }
+                }, 1000);
+
+// Error Object 
+
+               try{
+                   console.info("third try catch block");
+                     age;
+               } 
+               
+               catch(err){
+                   alert('you are in third catch block');
+                  console.log(err.name);   // refer error
+                  console.log(err.message);  // error defining 
+                  console.log(err.stack);   // gives with combined
+               }
+
+ // practical example of try...catch 
+ 
+ 
+              var json = '{"name":"kumar" , "age" : 45}';
+
+              let badjson = '{ name }';
+
+              try{
+                  let jsonbad = JSON.parse(badjson);
+                  alert("fourth try block -- practical json");
+              }
+
+              catch(err){
+                  alert('you are in fourth catch - Enter Json is bad');
+                  alert("we apologize for our error - please try once again");
+                console.log(err.stack);
+              }
+
+ // There is situation where are left an error with try-block & catch block wont execute 
+ 
+                var json2 = '{ "age": 30 }'; // incomplete data
+
+                try {
+
+                let user = JSON.parse(json2); // <-- no errors
+                alert( user.name ); // no name!
+
+                } catch (err) {
+                alert( "doesn't execute" );
+                }
+
+// in the upper-code the catch block wont execute  - that's where comes the throw operator 
+
+
+// --------------The Throw operator----------------------------------
+
+// The operator generates an error & that where passed to err of catch block 
+
+
+                let exampleObj = { name : "Askok"};
+
+                try {
+                         let user = exampleObj;
+                         alert(`user age is ${user.age}`); // its an error but catch block wont execute without throw operator
+                         throw new Error("age is not received");
+                }
+                catch(err){
+                          
+                    alert(`please recheck the ${exampleObj} object`);
+                    console.log(err.message);
+                }
+
+// concept of rethrowing -------------------------------------------
+
+// There maybe scenario where catch block can rethrow the errors that dont know what is the error is ....
+
+// in the example in info.js there is no JsON error actaully , but statement in catch says a JSON is error.
+
+
+// so .... Catch should only process errors that it knows and “rethrow” all others.
+
+/* The “rethrowing” technique can be explained in more detail as:
+
+Catch gets all errors.
+In the catch (err) {...} block we analyze the error object err.
+If we don’t know how to handle it, we do throw err. */
+
+
+ // we can say catch to handle a specific error by using instance of operator . & throw back other errors , that are caught in another try..catch block
+
+    var newName = {name : "Ramanatham"};
+
+    try {
+           let userId = newName.id ; // no id is there 
+           throw new SyntaxError("no id : incomplete data");
+
+        //    func();  // one more error
+    }
+
+    catch(err) {
+            if(err instanceof SyntaxError){
+                  console.log('rethrow catch block');
+                  alert(err.message);
+                  throw err;
+            }
+    }
+
+    
+function rethrow(){
+    var newName2 = {name : "Ramanatham"};
+
+    try {
+           let userId = newName2.id ; // no id is there 
+           throw new SyntaxError("no id : incomplete data");
+
+           func();  // one more error
+    }
+
+    catch(err) {
+            if(err instanceof SyntaxError){
+                  console.log('rethrow catch block');
+                  alert(err.message);
+                  throw err;
+            }
+    }
+}
+
+                try {
+                    rethrow();
+                }
+                catch(err){
+                    console.log('last catch block');
+                    alert("func error is caught here");
+                }
+                
+
+// finally  
+
+//The code has two ways of execution:
+
+// 1.If you answer “Yes” to “Make an error?”, then try -> catch -> finally.
+// 2 .If you say “No”, then try -> finally.
+    
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator</title>
+</head>
+<body>
+    <script>
+    // for returning multiple return in a single function 
+    // they are great for making iterable objects.
+    // Ability of function to exchange data with calling code
+
+      function* myGenerator(){
+         yield  console.log("Returning the first yield");
+         yield console.log("Returning the second yield");
+         yield console.log("returning the last yield");
+      }
+
+      let gen = myGenerator();
+      let firstValue = gen.next();
+
+      let secondValue = gen.next();
+      let thirdValue = gen.next();
+
+      console.log(JSON.stringify(firstValue));
+      console.log(JSON.stringify(secondValue));
+      console.log(JSON.stringify(thirdValue));
+
+
+
+    </script>
+</body>
+</html>

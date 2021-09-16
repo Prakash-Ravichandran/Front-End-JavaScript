@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage-4</title>
+    <style>
+
+        * input {
+        display: block;
+        margin-block: 1em;
+        }
+        input[type="checkbox"]{
+        display: inline !important;
+        margin-block: 1em;
+       }
+       .danger{
+        color: red;
+        font-size:small;
+        font-weight: 100;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <form name="stage-four">
+        <fieldset>
+            <legend>Stage-Four</legend>
+            <label for="abn">Enter ABN number:</label>
+            <input type="text" name="abn" id="abn" value="" onblur="obj.validateAbn() " />
+            <p id="err-abn" class="danger"></p>
+
+            <label for="companyname">Company-Name:</label>
+            <input type="text" name="companyname" id="companyname" value="" onblur="obj.validateCompany() " />
+            <p id="err-comp" class="danger"></p>
+            <!-- <a id="goBack-four" href="./index-3.html">Previous Page</button>
+            <a href="./index-5.html" id="next-three">Next Page</a> -->
+            <button type="button" onclick="obj.redirectNext()" >NextPage</button>
+            <button type="button" onclick="obj.redirectPrev()">PrevPage</button>
+            <button type="button" id = "storebutton" onclick="saveresponsefunc()" >Save responses</button>
+            <button type="button" id = "retrivebutton" onclick="retriveresponsefunc()" >retrive responses</button>
+        </fieldset>
+    </form>
+    <script type="text/javascript" src="./index-4.js">
+  
+    </script>
+</body>
+</html>

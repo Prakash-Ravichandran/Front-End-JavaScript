@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage-3</title>
+    <style>
+        * input {
+          display: block;
+          margin-block: 1em;
+        }
+        input[type="checkbox"]{
+        display: inline !important;
+        margin-block: 1em;
+       }
+       .danger{
+        color: red;
+        font-size:small;
+        font-weight: 100;
+        font-family: Arial, Helvetica, sans-serif;
+        } 
+        .asterisk{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form name="stage-three">
+        <fieldset>
+            <legend>Stage-3</legend>
+            <label for="fisrtname">Name:</label><span class="asterisk">&#42;</span></label>
+            <input type="text" name="firstname" id="firstname" value="" onblur="validateName()"/>
+            <p id="err-one" class="danger"></p>
+            
+            <h3>Enter Your Address</h3>
+            <label for="house-number">House-number:<span class="asterisk">&#42;</span></label>
+            <input type="text" name="house-number" id="house-number" value="" onblur="validateHouseNumber()"/>
+            <p id="err-two" class="danger"></p>
+
+            <label for="country">Country :</label>
+            <select id="country"  onclick="listCity()">
+                <option></option>
+                <option value="India">India</option>
+                <option value="Australia">Australia</option>
+                <option value="Uk">UK</option>
+            </select>
+            <label for="city">City :</label>
+            <select id="city">
+               <!---Place to create dynamic oprions-->
+            </select>
+          
+            <!-- <a id="goBack-three" href="./index-2.html">Previous Page</button>
+            <a href="./index-4.html" id="next-three">Next Page</a> -->
+        <button type="button" onclick="redirectNext()">NextPage</button>
+        <button type="button" onclick="redirectPrev()">PrevPage</button>
+        <button type="button" onclick="saveresponsefunc()">Save Responses</button>
+        <button type="button" onclick="retriveresponsefunc()">Retrive Responses</button>
+        </fieldset>
+
+    </form>
+    <script type="text/javascript" src="./index-3.js">
+
+ 
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map & Set Html</title>
+</head>
+<body>
+    <h3>Map & Set Html</h3>
+    <script>
+      /*Objects are used for storing keyed collections.
+        Arrays are used for storing ordered collections.
+
+        But that’s not enough for real life. That’s why Map and Set also exist.*/
+
+    // Map defintion : Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type 
+
+     let normalObjects = {
+         "1" : "Kumar",
+          1  : "Santhosh",
+          true : "iamtrue"
+     }
+
+     console.log(`first property is ${normalObjects['1']} and second property is ${normalObjects[1]}`);
+       // property is over written as santhosh
+       // because conventional objects won't allow different data types , it doesn't consider data types in property
+
+    let mapObject = new Map();
+    
+    // mapObject["1"] = "Kumar";
+    // mapObject[1] = "Santhosh";
+    // mapObject[true]= "iamtrue";
+    mapObject.set('1',"kumar");
+    mapObject.set(1,"santhosh");
+    mapObject.set(true,"iamtrue");
+
+
+    console.log(`first property is ${mapObject.get('1') } and second property is ${mapObject.get(1)}`);
+
+    // map() accepts four keys  1.string 2.number 3.boolean 4.object
+   
+   // snippets for passing object as a key to a map object
+    let passingObject = new Map();
+    let obj = { name : 'michael'};
+    passingObject.set(obj,"value for obj");
+
+    console.log(passingObject.get(obj));
+
+  // usage :  when we print an object it gives us like [object object]  , that in some cases we dont want 
+  // so assign a value to that object , by passing this object as key to map-object.
+
+
+  // Map chaining 
+  let chainingObj = new Map();
+   chainingObj.set('1',"First-Rank is Vinoth").set('2','Second-Rank is Ashok').set('3','Third-Rank is Vinoy');  //set chaining
+
+   console.log(chainingObj.get('1'));
+   console.log(chainingObj.get('2'));
+   console.log(chainingObj.get('3'));
+   console.log(chainingObj['3']);   // undefined , can't access like this.
+
+  /* Note : 
+  map[key] isn’t the right way to use a Map
+  Although map[key] also works, e.g. we can set map[key] = 2, this is treating map as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
+  So we should use map methods: set, get and so on */
+
+  // ---------------------------------------------iteration over the keys,values,entries(both keys,values)--------------------
+
+  // snippet for iterating on Map 
+//------------------------------- key       value             key     value           key     value       key         value
+  let arrayObjectMap = new Map([['Maggie','processedFood'],['yumme','processedFood'],['rice','homeMade'],['chapathi','homeMade']]);
+
+  console.log(arrayObjectMap.keys());
+  console.log(arrayObjectMap.values());
+  console.log(arrayObjectMap.entries());
+
+  // using for..of loop 
+ for(let foodType of arrayObjectMap.keys()){
+    console.log(foodType);
+ }
+
+ let myMapObject = new Map();
+ // mapObject.set(key,value);
+ myMapObject.set('Maggie','processedFood');
+ myMapObject.set('yumme','processedFood');
+ myMapObject.set('rice','homeMade');
+ myMapObject.set('chapathi','homeMade');
+
+ console.log(myMapObject.keys()); // shows all keys as   0: 'Maggie' , 1: 'yumme' , 2: 'rice' , 3: 'chapathi'
+
+ for(let foodType of myMapObject.keys()){
+   console.log(foodType);
+ }
+
+ myMapObject.forEach((value,key,map) => {
+   console.log(`The foodType of ${key} is ${value}`);
+ });
+ 
+
+ // snippet below for mapping a conventional object to Map()
+console.log('----------------mapping conventional object---------------------'); 
+let conventionalObject = { maggie : 'Processed Food', yumme : 'Processed Food', rice : 'Home Made', chapathi : 'Home Made'};
+
+let mappedConventionlObject = new Map(Object.entries(conventionalObject));
+
+console.log(mappedConventionlObject.entries());
+
+
+// snippet below for conveting arrays to objects using Object.fromEntries(array);
+
+let ObjFromArray = Object.fromEntries([['name1','kumar-value'],['name2','anand'],['name3','alok'],['name4','vishal'],['name5','vinoy']]);
+console.log(ObjFromArray);
+
+let arrayPrimary = [['name1','kumar-value'],['name2','anand'],['name3','alok'],['name4','vishal'],['name5','vinoy']];
+
+let ObjFromArray2 = Object.fromEntries(arrayPrimary);
+console.log(ObjFromArray2);
+
+
+
+    </script>
+</body>
+</html>

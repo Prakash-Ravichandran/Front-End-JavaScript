@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optional Chaining</title>
+</head>
+<body>
+    <h3>Optional Chaining deals with nested objects</h3>
+    <script>
+
+
+    let user = {
+        name : "kishore",
+        age : 22,
+        address  : {
+            no : 22 ,
+            streetName : "11th cross street",
+            city : "Chennai"
+        }
+    }
+
+    console.log(user.address.city);  // chennai
+    console.log(user.address2?.city);  // undefined because ?. returns undefined if the value before it has problem  
+    // console.log(user.address2.city);  // error
+   
+    // key Note : use optional chaining (?.) if the value before it was optional
+    // advantage : rather than showing error(Cannot read property 'innerHTML' of null), it will show as undefined if any error is there.
+   
+   // ------------Short circuiting-------------------
+   // key Note for using (?.) : 
+     /* As it was said before, the ?. immediately stops (“short-circuits”) the evaluation if the left part doesn’t exist.
+
+       So, if there are any further function calls or side effects, they don’t occur. */
+
+    //----------------another usge area for (?.) operator----------
+    // key note : ?. operator stops the execution without errors.  
+
+    let country = {
+        isGreenary(){
+            return `the country is absolutely green , without pollution`;
+        }
+    }
+
+    let secondaryCountry = {};   
+    
+       country.isGreenary?.();  //`the country is absolutely green , without pollution`
+       secondaryCountry.isGreenary?.(); // undefined , but saves us from errors
+
+    // ----------------  ?.[]  operator -----------------
+
+    let greenNation = {
+        name : 'India',
+        themeUnity : 'unity in diversity',
+
+    }
+
+    let otherNation = {
+        name : 'America',
+        themeBusiness : 'all are business men'
+    }
+
+    console.log(greenNation?.["themeUnity"]);   // 'unity in diversity',
+    console.log(otherNation?.["themeUnity"]);   // undefined
+   </script>
+</body>
+</html>

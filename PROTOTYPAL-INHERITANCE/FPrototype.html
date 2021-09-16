@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPrototype</title>
+</head>
+<body>
+    <h1>F.Prototype </h1> 
+    <script>
+
+
+let employeeComp = {
+compName : 'Zoho',
+compLocation: 'thenkasi',
+};
+
+let userOne = {
+name : 'sat',
+id : 1,
+};
+userOne.__proto__ = employeeComp;
+
+function noOfYears(name) {           // key Note : (Faced Errors) : Any Function on inheriting a object , that must follow the structure of a pure constructor (it should receive argument & assign to a this.var = var)
+    this.name = name;
+    return "exp calculated";
+};
+
+noOfYears.prototype = employeeComp;  // prototype is still not assigned , unless creating an object to noOfYears , if not & tried accessing noOfyears.compName => gives undefined.
+
+let obj = new noOfYears("New Func");
+
+alert(obj.compName);
+
+
+
+    </script>
+</body>
+</html>

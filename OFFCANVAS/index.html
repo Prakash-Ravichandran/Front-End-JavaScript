@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>off-canvas</title>
+    <link rel="stylesheet" href="./index.css">
+   <script type="text/javascript" src="./index.js"></script>
+</head>  
+<body>
+    <div class="canvas-group">
+        <button onclick="obj.openOffCanvas()" class="open-left">open-off-canvas-left</button>
+        <button onclick="obj.openOffCanvasTop()" class="open-left">open-off-canvas-top</button>
+        <button onclick="obj.openOffCanvasRight()" class="open-left">open-off-canvas-right</button>
+        <button onclick="obj.openOffCanvasBottom()" class="open-left">open-off-canvas-Bottom</button>
+    </div>
+    <!----------canvas division--------------------->
+    <main>
+        <section>
+            <div class="canvas" id="canvas-division">
+                <div class="canvas__header">
+                    <h5>Off Canvas</h5>
+                    <button class="close" onclick="obj.closeOffCanvas()">&times;</button>
+                </div>
+                <div class="canvas__body">
+                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, sed accusantium! Error quasi enim, deserunt odit, quas molestiae .</div>
+                <div class="canvas__footer">Canvas Footer</div>
+            </div>
+        </section>
+        <section>
+            <div class="canvas-top" id="canvas-division-two">
+                <div class="canvas__header">
+                    <h5>Off Canvas</h5>
+                    <button class="close" onclick="obj.closeOffCanvasTop()">&times;</button>
+                </div>
+                <div class="canvas__body">
+                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, sed accusantium! Error quasi enim, deserunt odit, quas molestiae .</div>
+                <div class="canvas__footer">Canvas Footer</div>
+            </div>
+        </section>
+        <section>
+            <div class="canvas-right" id="canvas-division-three">
+                <div class="canvas__header">
+                    <h5>Off Canvas</h5>
+                    <button class="close" onclick="obj.closeOffCanvasRight()">&times;</button>
+                </div>
+                <div class="canvas__body">
+                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, sed accusantium! Error quasi enim, deserunt odit, quas molestiae .</div>
+                <div class="canvas__footer">Canvas Footer</div>
+            </div>
+        </section>
+        <section>
+            <div class="canvas-bottom" id="canvas-division-four">
+                <div class="canvas__header">
+                    <h5>Off Canvas</h5>
+                    <button class="close" onclick="obj.closeOffCanvasBottom()">&times;</button>
+                </div>
+                <div class="canvas__body">
+                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, sed accusantium! Error quasi enim, deserunt odit, quas molestiae .</div>
+                <div class="canvas__footer">Canvas Footer</div>
+            </div>
+        </section>
+       
+    </main>
+</body>
+</html>
+

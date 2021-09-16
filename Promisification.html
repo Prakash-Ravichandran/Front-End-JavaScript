@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promisification</title>
+</head>
+<body>
+    <h3>Promisification</h3>
+    <script>
+
+// var b = Math.floor(Math.random() + .5);
+// console.log(b);
+
+// function xyz( callback1 , callback2){
+
+// // like promise statement 
+//   let a = 1 + b;
+//   if (a==2){
+//       callback1("we are success");
+//   }
+//   else {
+//       callback2("we are failed");
+//   }
+
+// xyz( function callBackOne(message) { console.log(message) }   , function callBackTwo(messageTwo) { console.log(messageTwo)}  );
+
+
+// promisification 
+
+//    function promisy(xyz){
+//        return function(){
+//            return new Promise((resolve,reject) => {
+//                    try{
+//                        xyz(resolve)
+//                    }
+//                    catch(err){
+//                        xyz(reject)
+//                    }
+//            })
+//        }
+//    }
+// promisy().then((res) => console.log(res))
+
+
+// snippet for callback 
+ 
+function getMultiply(arg1 ,arg2 , callback){  //arg1 , arg2 is an argument & callback is a function , that will be called later
+  if( !arg1 || !arg2){
+      return callback(new Error("no arguments"), null);
+  }
+  else {
+      return callback( null, arg1 * arg2 )
+  }
+}
+
+
+// getMultiply(4 , 4 , (err,result) => {
+//        if(err){
+//            console.log(err);
+//        }
+//        else {
+//            console.log(result);
+//        }
+// });
+
+ // step 2 : define the 'toPromisify() {...}' function
+
+//  const toPromisify = (fn) => {
+//          return (...args) => {
+//              return new Promise((resolve , reject) => {   // to define the callback block here in the promise
+//                   function customCallback(err,...result){
+//                       if(err){
+//                           reject(err);
+//                       }
+//                       else{
+//                           resolve(result);
+//                       }
+//                       args.push(customCallback)
+//                      fn.call(this, ...args)
+//                   }
+//              })
+//          }
+//   }
+
+//   // step 1: pass the function that is performing with callbacks as an argument to a function that will promisify 
+
+//   const getMultiplyPromise = toPromisify(getMultiply);
+
+ 
+
+//   getMultiplyPromise(2,2).then((res) => console.log(res)).catch((res) => console.log(res));
+
+
+
+
+function Hello(){
+let myString = "Australia";
+if (myString == "India"){
+    console.log("It is India");
+}
+else {
+    newYork();
+}     
+}
+ 
+// callBack Function
+function newYork() {
+ return console.log('Go to New York') }  // defining outside
+
+// Promisification
+ function toPromisify(func){
+     return function(){
+         return new Promise((resolve , reject) => {
+             try{
+                 func(resolve);
+             }
+             catch(err) {
+                 reject(err)
+             }
+         })
+     }
+ }
+  
+ const Promisified = toPromisify(Hello);
+
+ Promisified().then((res) => console.log(res))   // printing the result
+
+    </script>
+</body>
+</html>

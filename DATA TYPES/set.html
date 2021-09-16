@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set in Map</title>
+</head>
+<body>
+    <h1>Set in Map</h1>
+    <article>
+        <h3>A Set is a special type collection – “set of values” (without keys), where each value may occur only once.</h3>
+        <ul>
+            <li><p>new Set(iterable) – creates the set, and if an iterable object is provided (usually an array), copies values from it into the set.</p>
+            </li>
+            <li><p>set.add(value) – adds a value, returns the set itself.</p>
+            </li>
+            <li><p>set.delete(value) – removes the value, returns true if value existed at the moment of the call, otherwise false.</p>
+            </li>
+            <li><p>set.has(value) – returns true if the value exists in the set, otherwise false.</p>
+            </li>
+            <li><p>set.clear() – removes everything from the set..</p>
+            </li>
+            <li><p>set.size – is the elements count.</p>
+            </li>
+        </ul>
+    </article>
+
+    <script>
+        let employeeOne = {name : 'Anand'};
+        let employeeTwo = {name : 'Bharat'};
+        let employeeThird = {name : 'Charan'};
+        
+
+        let set = new Set();  // in the key value pair of an object , set can hold list of non-repeated values
+        set.add(employeeOne);
+        set.add(employeeTwo);
+        set.add(employeeThird);
+      
+
+        console.log(set);  // =>  { {emp1} , {emp2} , {emp3} ,{emp4}   }
+
+        for(let user of set){
+            console.log(user.name);
+        }
+    </script>
+</body>
+</html>

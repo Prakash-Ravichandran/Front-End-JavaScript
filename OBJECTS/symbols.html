@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbols in objects</title>
+</head>
+<body>
+    <h3>Symbols in objects</h3>
+    <script>
+        /* Notes : Conventionally An object property is of two types it can be a string type or symbol type  */
+
+        // Snippet for Creating a symbol
+
+        let crossMark = Symbol("a crossMark for modals"); // a symbol with description ( a crossMark for modals)
+
+        // get a symbol description using (.description)
+        console.log(crossMark.description);
+
+        let user = Symbol("object for script 1");
+
+        console.log(user.description);
+
+        let employee = Symbol('symbol for employee');
+        let company ={
+            [employee] : "Ramesh Kumar"
+        };
+
+        console.log(company[employee]);
+        /* note : There are two types of symbols local symbol , global symbol */
+
+        let localSymbol = Symbol('myLocalSymbol');
+        let gobalSymbol = Symbol.for('myGlobalSymbol');
+
+
+        // global symbol registry 
+     // the Symbol.for("description") is used for access the same symbol with that description , if not found then it creates a new symbol.
+         let propertOne = Symbol.for('email');
+
+         console.log(propertOne.description);  // as there is no email symbol it will create it 
+
+         let propertyTwo = Symbol.for('email');
+
+         console.log(propertyTwo.description);  // gives us the same symbol description
+
+        // snippet for doubt  in topic : Global Symbols
+         let current = {
+             [propertyTwo] : "hello India",
+             [propertOne] : "hello Australia"
+         }
+
+         console.log(current[propertOne] + "  " +current[propertyTwo]);  // hello Australia  hello Australia
+
+    </script>
+</body>
+</html>

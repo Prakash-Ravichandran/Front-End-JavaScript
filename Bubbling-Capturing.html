@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" onclick="event.stopPropagation()">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubbling - Capturing</title>
+    <style>
+        .myDiv{
+            border: 1px solid green; 
+        }
+        h2{
+            border: 1px solid blue;
+        }
+        p{
+            border: 1px solid violet;
+        }
+    </style>
+</head>
+<body onclick="event.stopPropagation()" >
+    <h3>Bubbling - Capturing</h3>
+
+    <div class="myDiv" onclick="alert(`hello i am div tag`)"  >
+        <h2 onclick="alert(`hello i am h2 tag`)"> i am a h2 tag</h2>  <!--by default the event listerner values are false hence bubbling happens-->
+        <p onclick="alert(`hello i am p tag`)">i am a paragraph</p>  
+    </div>
+    <script> 
+        // Bubbling Definition  : The process is called “bubbling”, because events “bubble” from the inner element up through parents like a bubble in the water.
+        /* The standard DOM Events describes 3 phases of event propagation:
+
+            Capturing phase – the event goes down to the element.
+            Target phase – the event reached the target element.
+            Bubbling phase – the event bubbles up from the element. */
+        // A bubbling event goes from the target element straight up.
+
+        // document.body.addEventListener('click' , function(){event.stopPropagation();})  // event is prevented after the body tag , html is not triggered
+
+
+        // snippet for capturing 
+       
+
+        for(let element of document.querySelectorAll('*')){
+                element.addEventListener("click", e => alert(`Capturing: ${element.tagName}`), true); // third parameter as true
+        }
+
+        // onclick="event.stopPropagation()"
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage-1</title>
+    <style>
+        .sub-stage-one{
+            /* visibility: hidden; */
+            display: none;
+        }
+        .sub-stage-two{
+            /* visibility: hidden; */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+  <form name="multistage-form">
+      <fieldset>
+          <legend><Strong>Stage-one</Strong></legend>
+          <h3>Need to create an account with us ?</h3>
+          <label for="radio-one">Yes:</label>
+          <input type="radio" name="radio-one" id="radio-one" value="yes" onchange="radioFunc()"/>
+          <label for="radio-two">No:</label>
+          <input type="radio" name="radio-two" id="radio-two" value="no"  onchange="radioFunc()"/>
+
+          <p id="demo1"></p>
+          <div class="sub-stage-one">
+              <h3>Create Account with PassPort :</h3>
+            <label for="radio-three">Yes:</label>
+            <input type="radio" name="radio-three" id="radio-three" value="yes"  onclick="redirectFunc()"/>
+            <label for="radio-four">No:</label>
+            <input type="radio" name="radio-four" id="radio-four" value="no"/>
+          </div>
+          <div class="sub-stage-two">
+            <h3> Use my existing account :</h3>
+            <label for="radio-five">Yes:</label>
+            <input type="radio" name="radio-five" id="radio-five" value="yes"/>
+            <label for="radio-six">No:</label>
+            <input type="radio" name="radio-six" id="radio-six" value="no"/>
+          </div>
+      </fieldset>
+  </form>
+    <script type="text/javascript" src="./index-1.js">        
+    </script>
+</body>
+</html>

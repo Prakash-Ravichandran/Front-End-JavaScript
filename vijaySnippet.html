@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise - task</title>
+</head>
+<body>
+    <h3>Promise - task</h3>
+    <script>
+        // Write a func to add two numbers, both numbers should be generated from a function that returns promise
+async function add() {
+    const firstNumber = await getFirstNumber();
+    const secondNumber = await getSecondNumber();    
+    return console.log(`Sum of ${firstNumber} & ${ secondNumber} is ${firstNumber + secondNumber}` );
+} 
+
+function getFirstNumber(){
+      return new Promise((resolve , reject) => {
+          let a = Math.floor(Math.random() * 7);
+          if(a==0){
+              reject("a is zero needed a value")
+          }
+          else {
+            console.log(`Value of a = ${a}`);
+              resolve(a);
+          }
+      })
+  }
+  
+function getSecondNumber(){
+    return new Promise((resolve , reject) => {
+        let b = Math.floor(Math.random() * 7);
+        if (b== 0){
+            reject("b cannot be zero")
+        }
+        else {
+            console.log(`Value of b = ${b}`);
+            resolve(b);
+        }
+    })
+}
+add(); // calling add();
+    </script>
+</body>
+</html>

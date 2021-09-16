@@ -1,0 +1,7 @@
+
+
+on hoverr.
+
+
+1. on hover of mouse on img  stop the setTimeout function ,
+2. on unhover play the carousel  

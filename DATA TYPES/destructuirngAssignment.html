@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring Assignment</title>
+</head>
+<body>
+    <h3>Destructuring Assignment</h3>
+    <script>
+
+        //snippet for array destructuring
+        let array = ['maran','kumar','anand','magesh','vinoth'];
+
+        let [person1,person2,person3,person4,person5] = array; // on the right hand side we can keep iterables like array , the destructuring assignment by default iterates on the right hand side values.
+
+        console.log(`destructuting of arrays => ${person1} ${person2} ${person3} ${person4} ${person5}`);  
+
+        // snippet for ignoring elements while copying with destructuring assignment
+
+        let [person6 , , person8, ,person10] = array;
+
+        console.log(`destructuting of arrays => ${person6}  ${person8}  ${person10}`);  // ignoring kumar & magesh while copying
+
+        // snippet for : on the right hand side we can keep a string also , the destructuring assignment that will iterate on each of string
+
+        let SplitByletter = "MAGESH";
+
+        let [letterONe,letterTwo,letterThird,letterFour,letterFive,letterSix] = SplitByletter;
+
+        console.log(`splitted by each letter with destructuring assignment => ${letterONe} ${letterTwo} ${letterThird} ${letterFour} ${letterFive} ${letterSix} `);
+       
+        // snippet for benefit of destructuring in looping
+
+        let obj = {
+            name : 'askok' ,
+            age : 49,
+            company : 'google',
+            native : 'TamilNadu'
+        };
+                 // pointers of iterables           // iterables like arrays
+        console.log(`using conventional objects we cannot iterate , by using Object.entries(obj) returns an array we can do it`);         
+        for(let [iteratorKey,iteratorValue]  of Object.entries(obj)){           
+            console.log(`${iteratorKey} ${iteratorValue}`);
+        }
+
+        let mapObj = new Map();
+        mapObj.set('name','ashok');
+        mapObj.set('age',49);
+        mapObj.set('company','google');
+        mapObj.set('native','TamilNadu');
+        console.log(`using map objects we can iterate , as it direct return key , values`);   
+        for (let [iteratorKey , iteratorValue] of mapObj){    // one of the advantage of map objects
+            console.log(`${iteratorKey} ${iteratorValue}`);
+        }
+
+
+        // snippet for ...rest parameter  
+        // key note : Anything afetr an ... operator is an array 
+     
+        // in case if the array on the right handside is so longer , we can keep an array named after ...
+
+        let [name1,name2,...rest] = array;
+
+        console.log(rest); // rest is an array with remaining items
+
+        // snippets below for incase if the array is shorter 
+        let arrayTwo = ['hello','world'];
+        let [firstWord = 'hello' , secondWord ='world' , ...restParam] = arrayTwo;
+        console.log(firstWord);
+        console.log(secondWord);
+        console.log(restParam); // remaining values are undefined
+
+        // snippet for replacing the existing value
+        let arrayThree = ['HELLO'];
+        let [firstWord2 = 'hello' , secondWord2 ] = arrayThree ;  // secondword remains the same
+        console.log(firstWord2);
+        console.log(secondWord2);  // all remaining values are undefined if the array on right is shorter
+    </script>
+</body>
+</html>

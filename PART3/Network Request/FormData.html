@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Form-Data</title>
+</head>
+<body>
+    <h3>Fetch Form-Data</h3>
+    
+    <form id="formElem">
+        <input type="text" name="name" value="John">
+        <input type="text" name="surname" value="Smith">
+        <input type="submit">
+      </form>
+    <script>
+        /* This chapter is about sending HTML forms: with or without files, with additional fields and so on.
+
+        FormData objects can help with that. As you might have guessed, it’s the object to represent HTML form data. */
+
+        /* If HTML form element is provided, it automatically captures its fields.
+
+        The special thing about FormData is that network methods, such as fetch, can accept a FormData object as a body. It’s encoded and sent out with Content-Type: multipart/form-data.
+
+        From the server point of view, that looks like a usual form submission. */
+
+
+        // formData methods are for submit form values without UI also.
+
+
+
+  formElem.onsubmit = async (e) => {
+    let response = await fetch('/article/formdata/post/user', {
+      method: 'POST',
+      body: new FormData(formElem)
+    });
+
+    let result = await response.json();
+
+    alert(result.message);
+    console.log(result.message)
+  };
+
+
+    </script>
+</body>
+</html>

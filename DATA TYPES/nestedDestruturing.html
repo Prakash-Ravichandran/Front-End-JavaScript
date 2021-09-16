@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nested Destructuring</title>
+</head>
+<body>
+    <h3>nested Destructuring</h3>
+    <script>
+        // if the right hand object has complex structure like nested object 
+
+        let complexObject = {
+            name : 'complex',
+            file : 'nested destructuring',
+
+            dimensions : {
+                xaxis : '2cm',
+                yaxis : '4cm',
+                zaxis : '6cm'
+            } ,
+            location1 : 'chennai'
+        };
+
+        let {
+            name ,
+            file , 
+            dimensions : 
+                {xaxis ,
+                yaxis ,
+                zaxis}, 
+            location1  
+            } = complexObject;
+                        
+        console.log(name);
+        console.log(file);
+        // console.log(dimensions);
+        console.log(xaxis);
+        console.log(yaxis);
+        console.log(zaxis);
+        console.log(location1);
+
+        // smart functions :- assignment of destructuring happening in a function call is called as smart function
+        let smartObject = {
+            property1 : 'Value1',
+            property2 : 'Value2',
+            propertyArray : ['arrayValue1','arrayValue2','arrayValue3','arrayValue4'],
+            property4 : 'value4'
+        }
+
+        function smart({property1,property2,property4,propertyArray = []}){
+            console.log(property1);
+            console.log(property2);
+            console.log(property4);
+            console.log(propertyArray);
+        }
+
+        smart(smartObject);
+
+
+    </script>
+</body>
+</html>

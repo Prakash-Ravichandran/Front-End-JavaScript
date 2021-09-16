@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>try catch - video snippets</title>
+</head>
+<body>
+    <script>
+        
+        // 1. need of try catch -----------
+        /* i)   our mistakes 
+           ii)  An unexpected user input. 
+           iii) An erroneous server response.
+            iv) Block of code will have the possibility of creating a error, there we can use try...catch */
+
+        // 2. we should be aware of two things in try..catch
+
+        /*  i) : The JavaScript engine first reads the code, and then runs it:
+           errors occuring during reading are called as parste-time errors , */
+
+                    // try {
+                    //        {{{{{{{{{{{{
+
+                    //     } catch (err) {
+                    //     alert("The engine can't understand this code, it's invalid");
+                    //     }  
+           
+          /* ii ) try...catch works only in synchronous not for aynchronous code  */
+           
+           
+                try {
+                console.log("before execution"); // only this line will execute
+                setTimeout(function() {
+                "Hello world";
+                }, 1000);
+                } catch (err) {
+                alert( "won't work" );
+                }
+
+                // solution code
+
+                
+                setTimeout(function() {
+                try {
+                    noSuchVariable; // try...catch handles the error!
+                } catch {
+                    alert( "error is caught here!" );
+                }
+                }, 1000);
+
+
+
+
+    </script>
+</body>
+</html>

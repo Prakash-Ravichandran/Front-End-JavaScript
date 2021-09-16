@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy Vs Return of constructor</title>
+</head>
+<body>
+    <script>
+        // snippets for return constructor // reference from Javascript.info.js
+    function BigUser() {
+
+    this.name = "John";
+
+    return { name: "Godzilla" };  // <-- returns this object
+    }
+
+    alert( new BigUser().name );
+
+    // snippet which does same as return constructor
+    let BigUserDuplicate = {
+       name : "John"
+      };
+
+     let handler={
+     get : (target,property,argumentList) => {
+     if(property == "name") {
+     alert( "GodZilla"); 
+    }}
+    }
+    let myProxy = new Proxy(BigUserDuplicate , handler);
+    myProxy.name;  
+    </script>
+</body>
+</html>

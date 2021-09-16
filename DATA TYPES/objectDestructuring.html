@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object Destructuring</title>
+</head>
+<body>
+    <h3>Object Destructuring</h3>
+    <script>
+        /* key notes :-
+        1. Property Names : left handside must have the property names same as right handside object properties to be copied. // let {var1, var2} = {var1:…, var2:…}
+        2. ordering : if we know the property names of right handside , then we can change the ordering in the left hand side. 
+         // changed the order in let {...}
+        let {height, width, title} = { title: "Menu", height: 200, width: 100 }
+        3. Changing Property Names : 
+        // let options = {
+            title: "Menu",
+            width: 100,
+            height: 200
+            };
+
+            // { sourceProperty: targetVariable }
+            let {width: w, height: h, title} = options;
+
+            */
+
+        let companyDetails = {
+            title : 'Google',
+            theme : 'Opportunity for every One',
+        };
+
+        let {title , theme} = companyDetails; // object on right handside 
+        console.log(`Company name is \" ${title} \" theme  \" ${theme} \"`);
+
+        let {title1 , theme1} = companyDetails; // object on right handside  
+        console.log(`Company name is \" ${title1} \" theme  \" ${theme1} \"`);  // gives undefined if the left side has some unkown properties with respective properties.
+         
+
+        // snippet for actual syntax
+    let object = {
+        sourceProperty : 'Adolf',
+        sourceProperty2 : 'Hilter'
+    }
+
+
+      let {sourceProperty : targetVariable  , sourceProperty2 : targetVariable2} = object // or {sourceProperty : 'value'  , sourceProperty2 : 'value'}
+    
+    //   console.log(`Germany's previous president is ${sourceProperty } and ${sourceProperty }`);  // gives undefined
+      console.log(`Germany's previous president is ${targetVariable} and ${targetVariable2}`);
+   
+    //   let {sourceProperty = "now"  , sourceProperty2 ="replaced" } = object
+    //   console.log(`Germany's previous president is ${sourceProperty} and ${sourceProperty2}`);  // if we want any property defined likes this that shouldnot be in object
+  
+    
+    // ...rest pattern
+    
+    // here the rest parameter is an object
+
+    let RestObject = {
+        name : 'Kumar',
+        age : 22,
+        location : 'Chennai',
+        theme : 'opportunity for everyone'
+        
+    }
+
+    let { name , age , ...otherDetails} = RestObject;
+
+    console.log(name);  // name is let variable
+    console.log(age);  // age is let variable
+    console.log(otherDetails);  // other details is an object like ,   otherDetails = { location : 'chennai' , theme :  'opportunity for everyone'}
+    
+    // snippet for code block concept
+
+    /*    the above program is executed as 
+        {
+            let name = "kumar",
+            let age = 22,
+
+            let otherDetails = {
+                location : 'chennai',
+                theme : 'opportunity for everyone'
+            }
+        }
+
+        if there is no let keyword , there is an error */
+
+    let title2 , width , height ;
+
+    ({title2,width, height} = {title2 : 'hello' , width : 200 , height : 250});
+
+    console.log(title2);
+    console.log(width);
+    console.log(height);
+
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Methods </title>
+</head>
+<body>
+    <button type="button" onclick="eligibility()">Check My Eligibility</button>
+    <script>
+        //Objects are usually created to represent entities of the real world, like users, orders and so on:
+
+        /* Key notes from Methods example :
+           Of course, we could use a pre-declared function as a method, like this: */
+
+        // Snippet for above   
+
+
+        // snippet for this is not bound 
+        let Candidate = {
+            ["name"] : "",
+            ["age"] : '',
+            ["cadet"] : ''
+        };
+
+     eligibility = () => {    // without arrow function it is giving undefined    answer . it gives undefined because as it is out of function , hence to write with normal function 1. we need write the function inside object or replace this.cadet -> Candidate.Cadet
+           (this.cadet)   // here this is not bound to that object(Candidate) , its for generalized Objects
+           ? 
+            prompt("You Are Eligible With a preference \n \n Please enter your training location \n 1.Chennai 2. Bangalore") 
+            : prompt(" You need to undergo training for 1 year \n Please enter your training location \n 1.Chennai 2. Bangalore");
+       } 
+       Candidate.eligibilityCandidate = eligibility;
+
+       function getCandidateData(){   // function to get dynamic data
+           let name = prompt('Enter your Name')
+           let age = prompt('Enter your Age');
+           let cadet = prompt('Are you an Ex.Cadet ? \n 1.True 2.False ');
+           console.log(cadet);
+           console.info(age);
+           Candidate['name'] = name;
+           Candidate['age'] = age;
+           Candidate['cadet'] = cadet;
+        //    Candidate['cadet'] = cadet;
+       }
+
+       getCandidateData();
+
+    // Arrow function have no this.
+
+    // snippet for this referals
+    let userThree = {
+           name : "kumar",
+           age : 32,
+
+        hello(){
+               alert(this.name);   // here this refers to this of hello is userThree  so -> userThree.name
+           }
+       }
+       userThree.hello();
+
+
+    // snippet for this referals outside the object   
+    let userFour = {
+        name : 'Ankit'
+    }  
+    
+    function twinkle(){
+        alert(this.name);     // this refers to this of 'f();'
+    }
+
+    userFour.f=twinkle;
+    userFour.f();
+
+    let userFive = {
+        name : 'userFive',
+        Twinkle : () => alert(this.name)     // Note : The Arrow function doesn't have "this". 
+    
+    }
+    let userFiveTwo = {
+        name : 'userFive',
+        Twinkley() {
+          let arrow =  () => alert(this.name);
+           arrow();
+        }    
+    
+    }
+
+    userFiveTwo.Twinkley();
+
+   
+
+   userFive.Twinkle();
+
+   let userSix = {
+        name : 'userSix',
+        Twinkle : function() { alert(this.name); }
+    
+    }
+
+   
+
+   userSix.Twinkle();
+
+undefined
+
+
+
+
+    </script>
+</body>
+</html>

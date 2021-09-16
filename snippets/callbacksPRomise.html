@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+// callbacks using objects & arrow function
+
+function objectAbc( callback1 , callback2){
+    // like promise statement 
+    let message ={ name : "rathnam" , age : 34};
+    let age;
+        if(age==32){
+          callback1(message);
+        }
+        else {
+          callback2(message);
+        }
+
+}
+objectAbc( (message) => console.log(message.name + message.age), (message) => console.log(message.name + message.age))
+
+
+// implementing using Promise 
+function objectXyz(){
+  return new Promise( (resolve,reject) => {
+    let message ={ name : "rathnam" , age : 34};
+    let age;
+
+    if(age=32){
+      resolve(message);
+    }
+    else {
+      reject(message);
+    }     
+  })
+}
+
+objectXyz().then( message => console.log(`Name is ${message.name},age is ${message.age}`)).catch(message => console.log(`Name is ${message.name},age is ${message.age}`))
+
+
+    </script>
+</body>
+</html>

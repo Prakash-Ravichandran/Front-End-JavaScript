@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<style>
+
+</style>
+<body>
+   
+    <main>
+
+    <section class="section-one">
+        <div class="section-one__carousel-header-one">
+           <h1>  I am a carousel header one </h1>
+        </div>
+        <div class="section-one__carousel-description-one">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore iure nostrum perferendis quas nulla deserunt est..
+        </div>
+    </section>
+
+    <section class="section-two">
+        <div class="section-two__carousel-header-two">
+           <h1> I am a carousel header two</h1>
+        </div>
+        <div class="section-two__carousel-description-two">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore iure nostrum perferendis quas nulla deserunt est..
+        </div>
+    </section>
+    <section class="section-three">
+        <div class="section-three__carousel-header-three">
+           <h1><I></I> am a carousel header three</h1> i am a carousel header three
+        </div>
+        <div class="section-three__carousel-description-three">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore iure nostrum perferendis quas nulla deserunt est..
+        </div>
+    </section>
+    <section class="section-four">
+        <div class="section-four__carousel-header-four">
+            <h1>I am a carousel header four</h1>
+        </div>
+        <div class="section-four__carousel-description-four">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore iure nostrum perferendis quas nulla deserunt est..
+        </div>
+    </section>
+    <section class="section-five">
+        <div class="section-five__carousel-header-five">
+            i am a carousel header five
+        </div>
+        <div class="section-five__carousel-description-five">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore iure nostrum perferendis quas nulla deserunt est..
+        </div>
+    </section>
+
+    <!---------------next & prev ------------>
+
+    <div class="button-container">
+        <a href="#" class="circle prev" onclick="Click()">&#8249</a>
+        <a href="#" class="circle next" onclick="ClickNext()">&#8250</a>
+    </div>
+  
+    
+
+</main>
+</body>
+
+<script type="text/javascript">
+
+    function Click(){
+
+        var x = document.getElementsByClassName('section-one');
+        var y = document.getElementsByClassName('section-two');
+        var z = document.getElementsByClassName('section-three');
+        var a = document.getElementsByClassName('section-four');
+        var b = document.getElementsByClassName('section-five');
+       console.log(x);
+        x[0].style.display="block";
+        y[0].style.display="none";
+        z[0].style.display="none";
+        a[0].style.display ="none";
+        b[0].style.display = "none";
+        console.log('button is clicked');
+        console.log(this);
+        // document.getElementsByClassName('next').onclick 
+    }
+
+    function ClickNext(){
+        var x = document.getElementsByClassName('section-one');
+        var y = document.getElementsByClassName('section-two');
+        var z = document.getElementsByClassName('section-three');
+        var a = document.getElementsByClassName('section-four');
+        var b = document.getElementsByClassName('section-five');
+
+        x[0].style.display="none";
+        y[0].style.display="block";
+        z[0].style.display="none";
+        a[0].style.display ="none";
+        b[0].style.display = "none";
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weak Map </title>
+</head>
+<body>
+    <h3>Weak Map</h3>
+    <script>
+        /* in the garbage collection chapter ,  we read that if we write null to an object , the object is removed from memory .
+          but in case , we write that object & kept that in an array we can stiil access , */
+          
+        let obj = {name : "Australia"};
+        let arr = [obj];
+        obj = null;
+
+        // console.log(obj.name);  // give errors as cannot read property of null
+        console.log(`we can still able to access ${arr[0].name}`);   // so it is not removed from memory , we can still access it 
+
+        // If we want to remove an object from memory , pass that object a key to weakmap & then assign that object as null.
+        let michael = { work : 'SoftWare-Enginner'}
+        let weakmapObj = new WeakMap();
+
+        weakmapObj.set(michael,"michael-Key");
+        console.log(weakmapObj.get(michael));
+        michael = null;
+
+        // usage Area 
+
+        // conventional counting function 
+        var count=0;
+        function Counter(UserName){
+           count= count + 1;
+           this.name = UserName;
+            console.log(count);
+        }
+
+        let userOne = new Counter("Micheal");
+        let userTwo = new Counter("ashok");
+        let userThree = new Counter("Bharat");
+
+        userTwo = null;
+        userOne = null;
+
+        console.log(userTwo);
+        console.log(`count value is not destroyed still exist in memory is =  ${count}`);  // the count value still exist.
+
+
+        // if we place this count values as value of a weakmap's key , when the key dies(user=null) , value also goes to garbage .
+
+
+        //creating a weakmap object .
+
+        let weakMapObject = new WeakMap();  // the key of this object is going to be the conventional object , value is the count
+        // var counter=0;
+        function weakCounter(user){
+            let counter = weakMapObject.get(user) || 0 ;
+            weakMapObject.set(user,counter++);
+            console.log(counter);
+        }
+
+        let john = {name : 'john manoj'};
+        weakCounter(john);
+
+        let mick = {name : "mick smith"};
+        weakCounter(mick);
+
+        john = null;  // object destroyed , counter destroyed
+        mick=null;   // object destroyed , counter destroyed
+
+        let smith = {name : "smith "}
+        weakCounter(smith);   // new object passing , new counter value
+
+        // console.log(`destroyed` + "" +counter);
+
+
+
+    </script>
+</body>
+</html>

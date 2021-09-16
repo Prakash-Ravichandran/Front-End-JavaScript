@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currying</title>
+</head>
+<body>
+    <h3>Currying</h3>
+    <script>
+
+    function myCurry(func) { 
+    return function(a) {    // the result of a myCurry is upto here   transformedCurrying(1) is stored with a=1 here,
+    return function(b) {   // once again assigning with b=2 , a is stored previously
+        return func(a, b);     // here func(a,b) is called to  = add(a,b){ return a + b};
+    };
+    };
+    }
+
+   
+    function add(a, b) {
+    return a + b;
+    }
+
+    let transformedCurrying = myCurry(add);
+
+    alert( transformedCurrying(1)(2) );
+    console.log( transformedCurrying (1) (2)); //3
+
+    // func(1,2,3) -> func(1)(2)(3)
+    </script>
+</body>
+</html>

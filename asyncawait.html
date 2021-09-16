@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async - await</title>
+</head>
+<body>
+    <script>
+
+     //async  function that is going to always return a function , that return value is the value of the resolve of that promise  
+     // await - works only with async keyword  
+     // a replacement for .then.catch
+     // the await returns the result , incase of any error it throws the error , handle it by try catch
+    async function mypromise(){
+        let promise = new Promise((resolve , reject) => {
+            
+
+           setTimeout(() => resolve("resolve done") , 5000);
+
+        })
+        let result = await promise;
+        console.log(result);
+    }
+
+  mypromise();
+
+
+async function myPromiseTwo() {
+     let promise = new Promise ((resolve , reject) => {
+           setTimeout(() => reject("rejected") , 4000);
+     })
+
+     let result = await promise;
+    //  console.log(result);
+}
+myPromiseTwo();
+
+async function myPromiseThree() {
+     let promise = new Promise((resolve,reject) => {
+         return Promise.reject("rejected");
+     })
+
+     let result = await promise;
+     console.info(result);
+}
+
+myPromiseThree();
+
+// dice example with async/await 
+
+// Note :   promise.then is equal to  await <Promise object>;
+function random(){
+    let  n = Math.floor(Math.random() * 7);
+    console.info(n);
+    return n;
+    }
+
+async function gameDice(){
+
+       let promise = new Promise((resolve,reject) => {
+           let dice = random();
+
+           if(dice == 5){
+             reject("restart the Game");
+           }
+
+           else {
+               resolve("game start");
+           }
+       })
+
+       let result = await promise;
+       console.log(result);
+
+}
+
+gameDice();
+
+    </script>
+</body>
+</html>

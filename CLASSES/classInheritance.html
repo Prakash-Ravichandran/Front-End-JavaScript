@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Inheritance</title>
+</head>
+<body>
+    <h3>Class Inheritance</h3>
+    <script>
+        class PassengerFlight{
+            constructor(flightName , flightModel){
+                this.name = flightName;
+                this.model = flightModel;
+            }
+
+            arrival(){
+                return console.log(` This ${flightName} flight is going arrive at ${new Date()} `);
+            }
+
+            departure(){
+                return console.log(` This ${flightName} flight is departured  at ${new Date()} `);
+            }
+        }
+
+        let Boeing = new PassengerFlight("Boeing-787" , 2018);
+
+        class CargoFlight extends PassengerFlight{   // the extends keyword here assigns the prototype .  CargoFlight.prototype = PassegerFlight.prototype
+            
+            constructor(flightName , flightModel , carrage){
+                super(flightName,flightModel);  // calling parent constructor here
+                // this.name = flightName;
+                // this.model = flightModel;
+                this.carrage = carrage;
+            }
+            cargoLoad(Load){
+                return console.log(`The amount of cargo carried by ${this.name} flight - model ${this.model} is ${Load}`);
+            }
+
+        }
+
+        let Antonova225 = new CargoFlight("Antonova225",2019,"200Kg");
+        Antonova225.cargoLoad('257-kg');
+
+
+
+
+    </script>
+</body>
+</html>
